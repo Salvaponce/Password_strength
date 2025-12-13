@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block styles %}
+        <!-- Bootstrap CSS --> 
+        {{ bootstrap.load_css() }}
+    {% endblock %}
+
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='images/padlock_1.png') }}");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;  /* Ensures the body has height to show the background */
+            margin: 0;      /* Removes default margin */
+            color: aliceblue; /* Ensures text is readable on the background */
+            padding: 50px; /* Adds some padding for better layout */
+        }
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: #000; /* Change this color to your preferred one */
+            border-radius: 50%; /* Optional: adds circular background */
+        }
+    </style>
+
+    
+
+    <title>Password Strength Checker</title>
+</head>
+<body>
+    <div class="container text-center mt-5">
+        <h1>Password Strength Checker</h1>
+    </div>
+        
+        <div class="container text-center mt-5">
+        <form method="POST">
+            <label for="password">Enter your password:</label>
+            <input type="text" id="password" name="password" required>
+            <button type="submit">Check Strength</button>
+
+        </form>
+        {% if strength == "Weak"%}        
+            <div class="alert alert-danger" role="alert">
+                <h4>Password Strength: {{ strength }}</h4>
+            </div>
+        {% elif strength == "Moderate" %}
+            <div class="alert alert-warning" role="alert">
+                <h4>Password Strength: {{ strength }}</h4>
+            </div>
+        {% elif strength == "Strong" %}
+            <div class="alert alert-success" role="alert">
+                <h4>Password Strength: {{ strength }}</h4>
+            </div>
+        {% elif strength == "Very Strong" %}
+            <div class="alert alert-success" role="alert">
+                <h4>Password Strength: {{ strength }}</h4>
+            </div>
+        {% endif %}
+
+        <div id="textCarousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="d-flex justify-content-center align-items-center" style="height: 200px;">
+                <h5>Passwords should be at least 12 characters long or more.</h5>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="d-flex justify-content-center align-items-center" style="height: 200px;">
+                <h5>Passwords should be a combination of uppercase and lowercase letters, numbers, and symbols.</h5>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="d-flex justify-content-center align-items-center" style="height: 200px;">
+                <h5>Passwords should not be a familiar name, person, character, or product.</h5>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="d-flex justify-content-center align-items-center" style="height: 200px;">
+                <h5>Passwords should not be based on your personal information.</h5>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="d-flex justify-content-center align-items-center" style="height: 200px;">
+                <h5>Passwords should be unique for each account you have.</h5>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="d-flex justify-content-center align-items-center" style="height: 200px;">
+                <h5>Customize your passwords for specific accounts.</h5>
+            </div>
+        </div>
+    </div>
+    
+    <a class="carousel-control-prev" href="#textCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#textCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+    </div>
+
+    
+
+    {% block scripts %}
+        <!-- Bootstrap JS -->
+        {{ bootstrap.load_js() }}
+    {% endblock %}
+
+</body>
+</html>
