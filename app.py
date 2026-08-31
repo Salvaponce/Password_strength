@@ -1,3 +1,4 @@
+import os
 import re
 import math
 from flask import Flask, render_template, request
@@ -8,6 +9,7 @@ import string
 import secrets
 
 app = Flask(__name__)
+# gunicorn app:app
 
 bootstrap = Bootstrap4(app)
 
@@ -163,4 +165,5 @@ def index():
     return render_template('index.html', active_tab=active_tab)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
